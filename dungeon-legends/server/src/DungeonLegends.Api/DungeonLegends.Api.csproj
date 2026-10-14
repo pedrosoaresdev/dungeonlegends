@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- API HTTP (ASP.NET Core Minimal APIs). Sem pacotes NuGet externos. -->
+  <PropertyGroup>
+    <RootNamespace>DungeonLegends.Api</RootNamespace>
+    <UserSecretsId>dungeon-legends-api</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonLegends.Infrastructure\DungeonLegends.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="DungeonLegends.Tests" />
+  </ItemGroup>
+</Project>

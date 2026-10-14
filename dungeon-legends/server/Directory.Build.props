@@ -1,0 +1,18 @@
+<Project>
+  <!-- Configurações compartilhadas por todos os projetos da solução -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Authors>Dungeon Legends</Authors>
+    <Version>1.0.0</Version>
+    <!-- CA1848/CA1873 (LoggerMessage) e CA1716 são excessivos para um projeto de jogo -->
+    <NoWarn>$(NoWarn);CA1848;CA1873;CA1716;CA1062;CA1515;CA2007;CA1031;CA1812;CA1305;CA1307;CA1309;CA1310;CA1311;CA1304;CA1056;CA1054;CA1002;CA2227;CA1819;CA1308;CA5394;CA1032;CA1064</NoWarn>
+  </PropertyGroup>
+</Project>

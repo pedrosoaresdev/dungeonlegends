@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Persistência em arquivos JSON, carregamento de conteúdo e segurança.
+       Usa apenas o framework do .NET: compila sem baixar nenhum pacote NuGet. -->
+  <PropertyGroup>
+    <RootNamespace>DungeonLegends.Infrastructure</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonLegends.Application\DungeonLegends.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Fonte única de verdade: o MESMO content.json que o navegador usa -->
+    <EmbeddedResource Include="..\..\..\client\data\content.json" LogicalName="DungeonLegends.content.json" Link="Content\content.json" />
+  </ItemGroup>
+</Project>

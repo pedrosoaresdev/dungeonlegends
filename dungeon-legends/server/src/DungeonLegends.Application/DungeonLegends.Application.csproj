@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Casos de uso: orquestra domínio + repositórios (interfaces) -->
+  <PropertyGroup>
+    <RootNamespace>DungeonLegends.Application</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonLegends.Domain\DungeonLegends.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="DungeonLegends.Tests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Domínio puro: regras do jogo, sem dependências externas -->
+  <PropertyGroup>
+    <RootNamespace>DungeonLegends.Domain</RootNamespace>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,54 @@
+# Requisições de exemplo para a extensão REST Client do VS Code.
+# Rode a API (dotnet run) e clique em "Send Request" acima de cada bloco.
+
+@api = http://localhost:5080
+
+### Saúde e índice de endpoints
+GET {{api}}/api/health
+
+###
+GET {{api}}/api
+
+### Cadastrar jogador (guarde o id e o token da resposta)
+# @name register
+POST {{api}}/api/players
+Content-Type: application/json
+
+{ "name": "MeuHeroi" }
+
+###
+@playerId = {{register.response.body.id}}
+@token = {{register.response.body.token}}
+
+### Iniciar partida
+# @name run
+POST {{api}}/api/runs
+Content-Type: application/json
+X-Player-Token: {{token}}
+
+{ "playerId": "{{playerId}}", "heroClass": "knight", "daily": false }
+
+### Finalizar partida (o servidor recalcula a pontuação e valida)
+POST {{api}}/api/runs/{{run.response.body.runId}}/finish
+Content-Type: application/json
+X-Player-Token: {{token}}
+X-Player-Id: {{playerId}}
+
+{
+  "heroClass": "knight", "floorsCleared": 0, "kills": 5, "bossesKilled": 0,
+  "goldEarned": 20, "level": 2, "timeMs": 2000, "victory": false,
+  "act": 1, "floor": 1, "seed": {{run.response.body.seed}}
+}
+
+### Ranking
+GET {{api}}/api/leaderboard?top=10
+
+### Desafio diário
+GET {{api}}/api/daily
+
+### Estatísticas globais
+GET {{api}}/api/stats
+
+### Perfil
+GET {{api}}/api/players/{{playerId}}
+X-Player-Token: {{token}}

@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4D2A01ED-8E5F-4B83-9F4E-3B0BAE0F82C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLegends.Api", "src\DungeonLegends.Api\DungeonLegends.Api.csproj", "{C20C8B7B-D45D-49C2-86E5-818213014D17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLegends.Application", "src\DungeonLegends.Application\DungeonLegends.Application.csproj", "{D0617151-0887-45AA-B43E-98E3C2F39B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLegends.Domain", "src\DungeonLegends.Domain\DungeonLegends.Domain.csproj", "{11650025-CD12-4960-8B8C-C3E066339EF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLegends.Infrastructure", "src\DungeonLegends.Infrastructure\DungeonLegends.Infrastructure.csproj", "{531649B1-AF1D-456C-8DF7-A91BFE7393BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E2AD143D-8916-48BA-AA02-7F1502363018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonLegends.Tests", "tests\DungeonLegends.Tests\DungeonLegends.Tests.csproj", "{B42908FA-3347-4092-97A0-FD0D168BB396}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C20C8B7B-D45D-49C2-86E5-818213014D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20C8B7B-D45D-49C2-86E5-818213014D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20C8B7B-D45D-49C2-86E5-818213014D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20C8B7B-D45D-49C2-86E5-818213014D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0617151-0887-45AA-B43E-98E3C2F39B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0617151-0887-45AA-B43E-98E3C2F39B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0617151-0887-45AA-B43E-98E3C2F39B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0617151-0887-45AA-B43E-98E3C2F39B43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11650025-CD12-4960-8B8C-C3E066339EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11650025-CD12-4960-8B8C-C3E066339EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11650025-CD12-4960-8B8C-C3E066339EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11650025-CD12-4960-8B8C-C3E066339EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531649B1-AF1D-456C-8DF7-A91BFE7393BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531649B1-AF1D-456C-8DF7-A91BFE7393BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531649B1-AF1D-456C-8DF7-A91BFE7393BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531649B1-AF1D-456C-8DF7-A91BFE7393BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42908FA-3347-4092-97A0-FD0D168BB396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B42908FA-3347-4092-97A0-FD0D168BB396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B42908FA-3347-4092-97A0-FD0D168BB396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B42908FA-3347-4092-97A0-FD0D168BB396}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C20C8B7B-D45D-49C2-86E5-818213014D17} = {4D2A01ED-8E5F-4B83-9F4E-3B0BAE0F82C1}
+		{D0617151-0887-45AA-B43E-98E3C2F39B43} = {4D2A01ED-8E5F-4B83-9F4E-3B0BAE0F82C1}
+		{11650025-CD12-4960-8B8C-C3E066339EF4} = {4D2A01ED-8E5F-4B83-9F4E-3B0BAE0F82C1}
+		{531649B1-AF1D-456C-8DF7-A91BFE7393BB} = {4D2A01ED-8E5F-4B83-9F4E-3B0BAE0F82C1}
+		{B42908FA-3347-4092-97A0-FD0D168BB396} = {E2AD143D-8916-48BA-AA02-7F1502363018}
+	EndGlobalSection
+EndGlobal

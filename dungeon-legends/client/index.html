@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dungeon Legends — RPG de Ação</title>
+  <meta name="description" content="RPG de ação 2D com masmorras procedurais, 5 fases, chefes épicos, 4 classes e ranking online." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="480" height="270"></canvas>
+
+    <!-- ================= HUD ================= -->
+    <div id="hud" class="hidden">
+      <div class="hud-left">
+        <div class="portrait"><img id="hud-portrait" alt="" /><span id="hud-level">1</span></div>
+        <div class="bars">
+          <div class="bar hp"><div class="fill" id="hud-hp"></div><div class="trail" id="hud-hp-trail"></div><span id="hud-hp-text">100/100</span></div>
+          <div class="bar mp"><div class="fill" id="hud-mp"></div><span id="hud-mp-text">50/50</span></div>
+          <div class="bar xp"><div class="fill" id="hud-xp"></div></div>
+        </div>
+      </div>
+      <div class="hud-inv">
+        <div class="slot" title="Ouro"><img id="hud-coin" alt="" /><span id="hud-gold">0</span></div>
+        <div class="slot" title="Poção de vida [1]"><img id="hud-flask-hp" alt="" /><span id="hud-pot-hp">0</span><kbd>1</kbd></div>
+        <div class="slot" title="Poção de mana [2]"><img id="hud-flask-mp" alt="" /><span id="hud-pot-mp">0</span><kbd>2</kbd></div>
+        <div class="slot key" id="hud-key" title="Chave do andar">🗝</div>
+      </div>
+      <div class="hud-top"><span id="hud-act">Fase 1</span><span id="hud-floor">Andar 1</span><span id="hud-kills">☠ 0</span></div>
+      <canvas id="minimap" width="144" height="104"></canvas>
+      <div class="hud-skills">
+        <div class="skill" id="skill-ability"><img id="hud-weapon" alt="" /><div class="cd"></div><kbd>Q</kbd><span class="label" id="hud-ability-name">Habilidade</span></div>
+        <div class="skill" id="skill-dash"><span class="dash-icon">»</span><div class="cd"></div><kbd>ESP</kbd><span class="label">Esquiva</span></div>
+      </div>
+      <div id="hud-objective"></div>
+    </div>
+
+    <div id="bossbar" class="hidden">
+      <div class="boss-name" id="boss-name">Chefe</div>
+      <div class="boss-track"><div class="ghost" id="boss-ghost"></div><div class="fill" id="boss-fill"></div></div>
+    </div>
+
+    <div id="banner" class="hidden"><small id="banner-sub"></small><h2 id="banner-title"></h2></div>
+    <div id="toasts"></div>
+    <div id="vignette"></div>
+
+    <!-- ================= TELAS ================= -->
+    <div id="screens">
+      <section id="screen-loading" class="screen active">
+        <h1 class="logo">DUNGEON<br /><span>LEGENDS</span></h1>
+        <div class="loadbar"><div id="load-fill"></div></div>
+        <p id="load-text">Carregando...</p>
+      </section>
+
+      <section id="screen-title" class="screen">
+        <div class="title-art" id="title-art"></div>
+        <h1 class="logo">DUNGEON<br /><span>LEGENDS</span></h1>
+        <p class="tagline">Desça. Lute. Torne-se lenda.</p>
+        <div class="name-row" id="name-row">
+          <label for="player-name">Seu nome de herói</label>
+          <input id="player-name" maxlength="16" placeholder="Digite seu nome" autocomplete="off" />
+        </div>
+        <nav class="menu">
+          <button data-action="continue" id="btn-continue" disabled>Continuar</button>
+          <button data-action="new" class="primary">Novo Jogo</button>
+          <button data-action="daily" id="btn-daily">Desafio Diário</button>
+          <button data-action="leaderboard">Ranking</button>
+          <button data-action="settings">Opções</button>
+          <button data-action="help">Como Jogar</button>
+        </nav>
+        <p class="status" id="api-status">Servidor: verificando...</p>
+      </section>
+
+      <section id="screen-class" class="screen">
+        <h2>Escolha seu herói</h2>
+        <p id="daily-info" class="hidden"></p>
+        <div class="class-grid" id="class-grid"></div>
+        <nav class="menu row"><button data-action="back">Voltar</button></nav>
+      </section>
+
+      <section id="screen-story" class="screen story">
+        <small id="story-sub"></small>
+        <h2 id="story-title"></h2>
+        <p id="story-text" class="typewriter"></p>
+        <nav class="menu row"><button data-action="story-continue" class="primary">Descer ▸</button></nav>
+      </section>
+
+      <section id="screen-levelup" class="screen">
+        <h2 class="glow">NÍVEL <span id="lvl-number">2</span>!</h2>
+        <p>Escolha uma bênção</p>
+        <div class="perk-grid" id="perk-grid"></div>
+      </section>
+
+      <section id="screen-shop" class="screen">
+        <h2>Acampamento do Mercador</h2>
+        <p>Ouro: <b id="shop-gold">0</b> &nbsp; · &nbsp; Vida restaurada pelo descanso</p>
+        <div class="shop-grid" id="shop-grid"></div>
+        <nav class="menu row"><button data-action="shop-leave" class="primary">Seguir viagem ▸</button></nav>
+      </section>
+
+      <section id="screen-pause" class="screen">
+        <h2>Pausado</h2>
+        <div class="stats-sheet" id="pause-stats"></div>
+        <nav class="menu">
+          <button data-action="resume" class="primary">Continuar</button>
+          <button data-action="settings">Opções</button>
+          <button data-action="help">Como Jogar</button>
+          <button data-action="quit">Salvar e Sair</button>
+        </nav>
+      </section>
+
+      <section id="screen-gameover" class="screen">
+        <h2 class="danger">VOCÊ CAIU</h2>
+        <p id="go-cause"></p>
+        <div class="stats-sheet" id="go-stats"></div>
+        <p class="score">Pontuação: <b id="go-score">0</b> <span id="go-rank"></span></p>
+        <nav class="menu row">
+          <button data-action="new" class="primary">Tentar de Novo</button>
+          <button data-action="leaderboard">Ranking</button>
+          <button data-action="title">Menu</button>
+        </nav>
+      </section>
+
+      <section id="screen-victory" class="screen">
+        <h2 class="glow">VITÓRIA LENDÁRIA!</h2>
+        <p>Azgorath foi derrotado. O reino volta a ver o sol.</p>
+        <div class="stats-sheet" id="win-stats"></div>
+        <p class="score">Pontuação: <b id="win-score">0</b> <span id="win-rank"></span></p>
+        <nav class="menu row">
+          <button data-action="new" class="primary">Jogar de Novo</button>
+          <button data-action="leaderboard">Ranking</button>
+          <button data-action="title">Menu</button>
+        </nav>
+      </section>
+
+      <section id="screen-leaderboard" class="screen">
+        <h2>Ranking de Lendas</h2>
+        <p id="board-source"></p>
+        <table class="board"><thead><tr><th>#</th><th>Herói</th><th>Classe</th><th>Andar</th><th>Nível</th><th>Pontos</th></tr></thead><tbody id="board-body"></tbody></table>
+        <nav class="menu row"><button data-action="back">Voltar</button></nav>
+      </section>
+
+      <section id="screen-settings" class="screen">
+        <h2>Opções</h2>
+        <div class="settings">
+          <label>Efeitos sonoros <input type="range" id="set-sfx" min="0" max="1" step="0.05" /></label>
+          <label>Música <input type="range" id="set-music" min="0" max="1" step="0.05" /></label>
+          <label class="check"><input type="checkbox" id="set-autoaim" /> Mira automática (bom para gamepad/teclado)</label>
+          <label class="check"><input type="checkbox" id="set-shake" /> Tremor de tela</label>
+          <label class="check"><input type="checkbox" id="set-fps" /> Mostrar FPS</label>
+          <label>URL da API C# <input type="text" id="set-api" placeholder="http://localhost:5080" /></label>
+        </div>
+        <nav class="menu row"><button data-action="back" class="primary">Voltar</button></nav>
+      </section>
+
+      <section id="screen-help" class="screen">
+        <h2>Como Jogar</h2>
+        <div class="help">
+          <div><kbd>W A S D</kbd> mover</div>
+          <div><kbd>Mouse</kbd> mirar</div>
+          <div><kbd>Clique</kbd>/<kbd>J</kbd> atacar (segure)</div>
+          <div><kbd>Botão dir.</kbd>/<kbd>Q</kbd> habilidade</div>
+          <div><kbd>Espaço</kbd> esquiva (invencível)</div>
+          <div><kbd>E</kbd> interagir / pegar arma</div>
+          <div><kbd>1</kbd> <kbd>2</kbd> poções</div>
+          <div><kbd>Esc</kbd> pausar · <kbd>M</kbd> mudo</div>
+        </div>
+        <p class="hint">Mate o <b class="gold">Elite Dourado</b> de cada andar para pegar a chave e abrir a escada. Cada fase termina num chefe. Gamepad é suportado!</p>
+        <nav class="menu row"><button data-action="back" class="primary">Voltar</button></nav>
+      </section>
+    </div>
+
+    <div id="fps" class="hidden"></div>
+  </div>
+
+  <noscript>Este jogo precisa de JavaScript habilitado.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

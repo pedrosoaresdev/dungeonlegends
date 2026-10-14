@@ -1,0 +1,171 @@
+{
+  "version": "1.0.0",
+  "rules": {
+    "maxLevel": 40,
+    "xpBase": 30,
+    "xpGrowth": 1.28,
+    "statPerLevel": { "hp": 8, "atk": 1.5, "def": 0.6 },
+    "score": {
+      "perFloor": 500,
+      "perKill": 15,
+      "perBoss": 2500,
+      "perGold": 1,
+      "perLevel": 120,
+      "victoryBonus": 15000,
+      "timeBonusMax": 6000,
+      "timeBonusSecondsPerFloor": 180
+    },
+    "antiCheat": {
+      "minSecondsPerFloor": 8,
+      "maxKillsPerFloor": 60,
+      "maxGoldPerFloor": 900
+    }
+  },
+  "classes": [
+    {
+      "id": "knight",
+      "name": "Cavaleiro",
+      "sprite": "knight_m",
+      "description": "Tanque de aço. Golpes largos e o Escudo Sagrado que reflete o dano.",
+      "attack": "melee",
+      "ability": { "id": "shield", "name": "Escudo Sagrado", "cooldown": 9, "cost": 30 },
+      "stats": { "hp": 140, "mana": 60, "atk": 14, "def": 6, "speed": 92, "crit": 0.08, "attackRate": 2.4, "range": 30 },
+      "startWeapon": "weapon_knight_sword",
+      "color": "#5ad1ff"
+    },
+    {
+      "id": "wizard",
+      "name": "Feiticeira",
+      "sprite": "wizzard_f",
+      "description": "Bolas de fogo à distância e a Nova Arcana que explode tudo ao redor.",
+      "attack": "spell",
+      "ability": { "id": "nova", "name": "Nova Arcana", "cooldown": 7, "cost": 40 },
+      "stats": { "hp": 90, "mana": 120, "atk": 16, "def": 2, "speed": 96, "crit": 0.1, "attackRate": 2.6, "range": 220 },
+      "startWeapon": "weapon_red_magic_staff",
+      "color": "#c58cff"
+    },
+    {
+      "id": "elf",
+      "name": "Elfo Ranger",
+      "sprite": "elf_m",
+      "description": "Rápido e letal. Arremessa adagas e dispara a Chuva de Lâminas.",
+      "attack": "throw",
+      "ability": { "id": "volley", "name": "Chuva de Lâminas", "cooldown": 6, "cost": 30 },
+      "stats": { "hp": 100, "mana": 80, "atk": 11, "def": 3, "speed": 112, "crit": 0.18, "attackRate": 3.6, "range": 260 },
+      "startWeapon": "weapon_knife",
+      "color": "#7dff8a"
+    },
+    {
+      "id": "lizard",
+      "name": "Berserker Lagarto",
+      "sprite": "lizard_f",
+      "description": "Fúria pura. Quanto menos vida, mais dano. Usa o Furacão de Machado.",
+      "attack": "melee",
+      "ability": { "id": "whirlwind", "name": "Furacão", "cooldown": 8, "cost": 35 },
+      "stats": { "hp": 120, "mana": 70, "atk": 17, "def": 4, "speed": 102, "crit": 0.12, "attackRate": 2.2, "range": 34 },
+      "startWeapon": "weapon_axe",
+      "color": "#ff9b54"
+    }
+  ],
+  "enemies": [
+    { "id": "tiny_zombie", "name": "Zumbizinho", "sprite": "tiny_zombie", "hp": 18, "atk": 5, "speed": 48, "xp": 6, "gold": 3, "ai": "chaser" },
+    { "id": "goblin", "name": "Goblin", "sprite": "goblin", "hp": 22, "atk": 6, "speed": 78, "xp": 8, "gold": 5, "ai": "chaser" },
+    { "id": "skelet", "name": "Esqueleto", "sprite": "skelet", "hp": 30, "atk": 7, "speed": 58, "xp": 10, "gold": 4, "ai": "archer", "projectile": "bone" },
+    { "id": "muddy", "name": "Lodo", "sprite": "muddy", "hp": 40, "atk": 8, "speed": 40, "xp": 11, "gold": 4, "ai": "splitter" },
+    { "id": "swampy", "name": "Gosma Tóxica", "sprite": "swampy", "hp": 34, "atk": 9, "speed": 52, "xp": 12, "gold": 5, "ai": "exploder" },
+    { "id": "zombie", "name": "Zumbi Pútrido", "sprite": "zombie", "hp": 55, "atk": 11, "speed": 44, "xp": 14, "gold": 6, "ai": "chaser" },
+    { "id": "masked_orc", "name": "Orc Mascarado", "sprite": "masked_orc", "hp": 60, "atk": 13, "speed": 70, "xp": 18, "gold": 9, "ai": "charger" },
+    { "id": "orc_warrior", "name": "Guerreiro Orc", "sprite": "orc_warrior", "hp": 80, "atk": 15, "speed": 60, "xp": 20, "gold": 10, "ai": "chaser" },
+    { "id": "orc_shaman", "name": "Xamã Orc", "sprite": "orc_shaman", "hp": 50, "atk": 14, "speed": 50, "xp": 22, "gold": 12, "ai": "archer", "projectile": "poison" },
+    { "id": "ice_zombie", "name": "Zumbi Gélido", "sprite": "ice_zombie", "hp": 85, "atk": 16, "speed": 46, "xp": 24, "gold": 10, "ai": "chaser", "onHit": "slow" },
+    { "id": "necromancer", "name": "Necromante", "sprite": "necromancer", "hp": 70, "atk": 15, "speed": 46, "xp": 30, "gold": 16, "ai": "summoner", "summon": "skelet" },
+    { "id": "imp", "name": "Diabrete", "sprite": "imp", "hp": 50, "atk": 18, "speed": 96, "xp": 26, "gold": 12, "ai": "chaser" },
+    { "id": "wogol", "name": "Wogol", "sprite": "wogol", "hp": 95, "atk": 20, "speed": 64, "xp": 32, "gold": 15, "ai": "charger" },
+    { "id": "chort", "name": "Chort Infernal", "sprite": "chort", "hp": 120, "atk": 22, "speed": 58, "xp": 38, "gold": 18, "ai": "archer", "projectile": "fire" }
+  ],
+  "bosses": [
+    { "id": "big_zombie", "name": "Rei Podre, o Devorador", "sprite": "big_zombie", "hp": 900, "atk": 18, "speed": 42, "xp": 300, "gold": 200, "patterns": ["slam", "summon", "charge"], "minion": "tiny_zombie" },
+    { "id": "ogre_swamp", "name": "Grommash, Ogro do Brejo", "sprite": "ogre", "hp": 1500, "atk": 24, "speed": 48, "xp": 500, "gold": 320, "patterns": ["slam", "spray", "charge"], "projectile": "poison", "minion": "swampy" },
+    { "id": "ogre_warlord", "name": "Senhor da Guerra Orc", "sprite": "ogre", "tint": "#ff5a3a", "hp": 2200, "atk": 30, "speed": 56, "xp": 750, "gold": 450, "patterns": ["charge", "spray", "summon", "slam"], "projectile": "bone", "minion": "masked_orc" },
+    { "id": "lich", "name": "Malakar, o Lich de Gelo", "sprite": "necromancer", "scale": 2.4, "hp": 2800, "atk": 32, "speed": 40, "xp": 1000, "gold": 600, "patterns": ["ring", "summon", "spray", "blink"], "projectile": "ice", "minion": "skelet" },
+    { "id": "big_demon", "name": "Azgorath, Senhor do Abismo", "sprite": "big_demon", "hp": 4200, "atk": 38, "speed": 50, "xp": 2000, "gold": 1000, "patterns": ["ring", "charge", "spray", "summon", "slam", "spiral"], "projectile": "fire", "minion": "imp" }
+  ],
+  "acts": [
+    {
+      "id": 1, "name": "Catacumbas Esquecidas", "subtitle": "Fase 1",
+      "story": "O reino caiu em silêncio. Sob a capela, os mortos voltaram a andar. Desça e descubra quem os despertou.",
+      "floors": 2, "tint": null, "ambient": 0.86, "enemies": ["tiny_zombie", "goblin", "skelet"], "boss": "big_zombie", "music": 0
+    },
+    {
+      "id": 2, "name": "Pântano Pútrido", "subtitle": "Fase 2",
+      "story": "Os túneis desembocam num brejo subterrâneo. O ar é verde e o chão borbulha. Algo enorme ronca no escuro.",
+      "floors": 2, "tint": "#3a7a3a", "ambient": 0.9, "enemies": ["muddy", "swampy", "zombie", "goblin"], "boss": "ogre_swamp", "music": 1
+    },
+    {
+      "id": 3, "name": "Fortaleza de Ferro Orc", "subtitle": "Fase 3",
+      "story": "Tambores de guerra ecoam. Os orcs estão forjando um exército para invadir a superfície. Quebre a fortaleza.",
+      "floors": 3, "tint": "#8a4a2a", "ambient": 0.88, "enemies": ["masked_orc", "orc_warrior", "orc_shaman", "goblin"], "boss": "ogre_warlord", "music": 2
+    },
+    {
+      "id": 4, "name": "Cripta Gélida", "subtitle": "Fase 4",
+      "story": "O frio corta a alma. Malakar, o Lich, comanda os mortos de todas as fases. Mas ele também serve a alguém...",
+      "floors": 3, "tint": "#4a7ab0", "ambient": 0.92, "enemies": ["ice_zombie", "necromancer", "skelet", "zombie"], "boss": "lich", "music": 3
+    },
+    {
+      "id": 5, "name": "Abismo de Azgorath", "subtitle": "Fase Final",
+      "story": "O portal do abismo está aberto. Azgorath, o Senhor dos Demônios, aguarda. Esta é a última descida.",
+      "floors": 3, "tint": "#a02a2a", "ambient": 0.94, "enemies": ["imp", "wogol", "chort", "masked_orc"], "boss": "big_demon", "music": 4
+    }
+  ],
+  "weapons": [
+    { "id": "weapon_knife", "name": "Adaga", "power": 0, "speed": 0.2, "rarity": "common" },
+    { "id": "weapon_rusty_sword", "name": "Espada Enferrujada", "power": 2, "speed": 0, "rarity": "common" },
+    { "id": "weapon_regular_sword", "name": "Espada Longa", "power": 4, "speed": 0, "rarity": "common" },
+    { "id": "weapon_hammer", "name": "Martelo de Guerra", "power": 6, "speed": -0.15, "rarity": "common" },
+    { "id": "weapon_axe", "name": "Machado", "power": 5, "speed": -0.05, "rarity": "common" },
+    { "id": "weapon_machete", "name": "Facão", "power": 4, "speed": 0.12, "rarity": "common" },
+    { "id": "weapon_cleaver", "name": "Cutelo", "power": 6, "speed": 0.05, "rarity": "rare" },
+    { "id": "weapon_mace", "name": "Maça", "power": 7, "speed": -0.08, "rarity": "rare" },
+    { "id": "weapon_baton_with_spikes", "name": "Porrete Cravado", "power": 8, "speed": -0.1, "rarity": "rare" },
+    { "id": "weapon_spear", "name": "Lança", "power": 7, "speed": 0.05, "rarity": "rare" },
+    { "id": "weapon_katana", "name": "Katana", "power": 9, "speed": 0.2, "rarity": "rare" },
+    { "id": "weapon_knight_sword", "name": "Espada do Cavaleiro", "power": 6, "speed": 0.05, "rarity": "rare" },
+    { "id": "weapon_green_magic_staff", "name": "Cajado Verde", "power": 8, "speed": 0.1, "rarity": "rare" },
+    { "id": "weapon_red_magic_staff", "name": "Cajado Rubro", "power": 5, "speed": 0.05, "rarity": "common" },
+    { "id": "weapon_duel_sword", "name": "Espada de Duelo", "power": 11, "speed": 0.15, "rarity": "epic" },
+    { "id": "weapon_saw_sword", "name": "Espada Serrilhada", "power": 12, "speed": 0, "rarity": "epic" },
+    { "id": "weapon_big_hammer", "name": "Martelo Colossal", "power": 16, "speed": -0.25, "rarity": "epic" },
+    { "id": "weapon_red_gem_sword", "name": "Lâmina de Rubi", "power": 13, "speed": 0.1, "rarity": "epic" },
+    { "id": "weapon_golden_sword", "name": "Espada Dourada", "power": 16, "speed": 0.1, "rarity": "legendary" },
+    { "id": "weapon_lavish_sword", "name": "Excalibur Rúnica", "power": 20, "speed": 0.12, "rarity": "legendary" },
+    { "id": "weapon_anime_sword", "name": "Lâmina do Destino", "power": 24, "speed": 0.05, "rarity": "legendary" }
+  ],
+  "rarities": {
+    "common": { "name": "Comum", "color": "#d6d6d6", "weight": 60, "minAct": 1 },
+    "rare": { "name": "Raro", "color": "#4fa3ff", "weight": 28, "minAct": 1 },
+    "epic": { "name": "Épico", "color": "#c35bff", "weight": 10, "minAct": 2 },
+    "legendary": { "name": "Lendário", "color": "#ffb02e", "weight": 3, "minAct": 3 }
+  },
+  "perks": [
+    { "id": "might", "name": "Força Bruta", "icon": "⚔", "desc": "+15% de dano", "stat": "dmgMult", "value": 0.15, "max": 6 },
+    { "id": "vitality", "name": "Vitalidade", "icon": "❤", "desc": "+30 de vida máxima e cura total", "stat": "maxHp", "value": 30, "max": 8 },
+    { "id": "swift", "name": "Pés Ligeiros", "icon": "➶", "desc": "+10% de velocidade", "stat": "speedMult", "value": 0.1, "max": 4 },
+    { "id": "frenzy", "name": "Frenesi", "icon": "✦", "desc": "+15% de velocidade de ataque", "stat": "attackRateMult", "value": 0.15, "max": 5 },
+    { "id": "precision", "name": "Precisão", "icon": "◎", "desc": "+8% de chance de crítico", "stat": "crit", "value": 0.08, "max": 5 },
+    { "id": "armor", "name": "Pele de Pedra", "icon": "▣", "desc": "+4 de defesa", "stat": "def", "value": 4, "max": 6 },
+    { "id": "vampire", "name": "Vampirismo", "icon": "♥", "desc": "Cura 4% do dano causado", "stat": "lifesteal", "value": 0.04, "max": 4 },
+    { "id": "arcane", "name": "Mente Arcana", "icon": "✧", "desc": "+30 mana e -15% de recarga", "stat": "arcane", "value": 0.15, "max": 4 },
+    { "id": "greed", "name": "Ganância", "icon": "$", "desc": "+30% de ouro coletado", "stat": "goldMult", "value": 0.3, "max": 3 },
+    { "id": "thorns", "name": "Espinhos", "icon": "✹", "desc": "Reflete 30% do dano recebido", "stat": "thorns", "value": 0.3, "max": 3 },
+    { "id": "multishot", "name": "Projétil Extra", "icon": "⋔", "desc": "+1 projétil / golpe mais largo", "stat": "multishot", "value": 1, "max": 3 },
+    { "id": "magnet", "name": "Ímã", "icon": "⊛", "desc": "Atrai itens de mais longe", "stat": "magnet", "value": 40, "max": 3 }
+  ],
+  "shop": [
+    { "id": "potion_hp", "name": "Poção de Vida", "sprite": "flask_big_red", "price": 40, "desc": "Recupera 50% da vida" },
+    { "id": "potion_mp", "name": "Poção de Mana", "sprite": "flask_big_blue", "price": 30, "desc": "Recupera toda a mana" },
+    { "id": "elixir_atk", "name": "Elixir da Fúria", "sprite": "flask_big_yellow", "price": 120, "desc": "+3 de ataque permanente" },
+    { "id": "elixir_def", "name": "Elixir de Pedra", "sprite": "flask_big_green", "price": 120, "desc": "+2 de defesa permanente" },
+    { "id": "heart", "name": "Coração Antigo", "sprite": "ui_heart_full", "price": 150, "desc": "+25 de vida máxima" },
+    { "id": "mystery", "name": "Baú Misterioso", "sprite": "chest_full_open_anim", "price": 200, "desc": "Arma aleatória (rara ou melhor)" }
+  ]
+}
