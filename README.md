@@ -150,13 +150,13 @@ git init
 git add .
 git commit -m "Dungeon Legends: RPG de ação 2D + API C#"
 git branch -M main
-git remote add origin https://github.com/SEU_USUARIO/dungeon-legends.git
+git remote add origin https://github.com/pedrosoaresdev/dungeon-legends.git
 git push -u origin main
 ```
 
 Já vem com GitHub Actions:
 - **CI** (`.github/workflows/ci.yml`): build + testes da API e checagem do JavaScript a cada push.
-- **GitHub Pages** (`.github/workflows/pages.yml`): publica o jogo. Ative em **Settings → Pages → Source: GitHub Actions** e o jogo fica em `https://SEU_USUARIO.github.io/dungeon-legends/` (no Pages ele roda no modo offline, a menos que você hospede a API e configure a URL em *Opções*; adicione o domínio do Pages em `Cors:AllowedOrigins` no `appsettings.json`).
+- **GitHub Pages** (`.github/workflows/pages.yml`): publica o jogo. Ative em **Settings → Pages → Source: GitHub Actions** e o jogo fica em `https://pedrosoaresdevO.github.io/dungeon-legends/` (no Pages ele roda no modo offline, a menos que você hospede a API e configure a URL em *Opções*; adicione o domínio do Pages em `Cors:AllowedOrigins` no `appsettings.json`).
 
 ---
 
